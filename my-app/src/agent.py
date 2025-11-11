@@ -1,4 +1,8 @@
 from langchain.agents import create_agent
+from langchain_community.chat_models.tongyi import ChatTongyi
+from langchain.messages import HumanMessage
+import os
+
 
 def send_email(to: str, subject: str, body: str):
     """Send an email"""
@@ -10,12 +14,15 @@ def send_email(to: str, subject: str, body: str):
     # ... email sending logic
 
     return f"Email sent to {to}"
-from langchain_community.chat_models.tongyi import ChatTongyi
-from langchain.messages import HumanMessage
+
+
+TONGYI_API_KEY = os.getenv("TONGYI_API_KEY")
+if not TONGYI_API_KEY:
+    raise ValueError("Missing TONGYI_API_KEY environment variable")
 
 model = ChatTongyi(
     streaming=True,
-    api_key="sk-43070f4cd1074965a93a03d6d5333cd8",
+    api_key=TONGYI_API_KEY,
 )
 agent = create_agent(
     model=model,
