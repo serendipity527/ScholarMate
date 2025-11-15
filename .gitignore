@@ -1,1 +1,5 @@
 .env
+.venv
+.idea
+.windsurf
+.langgraph_api
