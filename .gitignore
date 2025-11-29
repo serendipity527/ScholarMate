@@ -3,3 +3,5 @@
 .idea
 .windsurf
 .langgraph_api
+.pyc
+__pycache__
